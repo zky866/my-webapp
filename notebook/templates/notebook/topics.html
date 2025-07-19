@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+
+{% block content %}
+
+  <p>所有主题</p>
+  <ul>
+     {% for topic in topics %}
+       <li><a href="{% url 'notebook:topic' topic.id %}">{{ topic }}</a>
+       </li>
+     {% empty %}
+        <li>还没有主题哦</li>
+     {% endfor %}
+
+  </ul>
+  <a href="{% url "notebook:new_topic" %}">创建新主题</a>
+
+{% endblock content%}

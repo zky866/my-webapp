@@ -1,0 +1,11 @@
+{% extends "main/base.html" %}
+{% block content %}
+  <p>创建新主题：</p>
+
+  <form action="{% url "notebook:new_topic" %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button name="submit">创建</button>
+  </form>
+
+{% endblock content%}

@@ -1,0 +1,19 @@
+{% extends "main/base.html"%}
+
+{% block content %}
+  <p>主题:{{ topic }}</p>
+  <p>条目:</p>
+  <p>
+      <a href="{% url "notebook:new_entry" topic.id %}">添加新条目</a>
+  </p>
+  <ul>
+   {% for entry in entries%}
+      <li>
+          <P>{{ entry.date_added|date:"Y m d, H:i" }}</P>
+          <p>{{ entry.text|linebreaks }}</p>
+      </li>
+   {% empty %}
+      <li>现在还没有条目</li>
+   {% endfor %}
+  </ul>
+{% endblock content %}
