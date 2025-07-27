@@ -9,8 +9,11 @@
   <ul>
    {% for entry in entries%}
       <li>
-          <P>{{ entry.date_added|date:"Y m d, H:i" }}</P>
+          <P>{{ entry.date_added|date:"Y年m月d日,H:i" }}</P>
           <p>{{ entry.text|linebreaks }}</p>
+          <p>
+              <a href="{% url "notebook:edit_entry" entry.id %}">编辑</a>
+          </p>
       </li>
    {% empty %}
       <li>现在还没有条目</li>
