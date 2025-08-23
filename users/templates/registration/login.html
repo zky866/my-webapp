@@ -1,0 +1,13 @@
+{% extends "main/base.html" %}
+{%block content %}
+  {%if form.errors %}
+    <P>输入错误</P>
+  {% endif%}
+
+  <form method="post" action="{% url "users:login" %}>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button name="submit">登录</button>
+    <input type="hidden" name="next" value="{% url "main:index" %}"/>
+  </form>
+{% endblock content %}
