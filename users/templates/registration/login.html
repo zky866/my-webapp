@@ -4,7 +4,7 @@
     <P>输入错误</P>
   {% endif%}
 
-  <form method="post" action="{% url "users:login" %}>
+  <form method="post" action="{% url "users:login" %}">
     {% csrf_token %}
     {{form.as_p}}
     <button name="submit">登录</button>
