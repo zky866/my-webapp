@@ -25,7 +25,23 @@ SECRET_KEY = 'django-insecure-@6uqxtq&=re#pqj@a_7v!4$$lxo$r9d8ljwgu9peztl5&guts#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+# 1. 放行访问主机，Nginx 转发必须配置
+ALLOWED_HOSTS = ['*']  # 开发环境直接用 *，生产写具体IP/域名
+
+# 2. 信任代理请求头（Nginx 反向代理核心）
+USE_X_FORWARDED_HOST = True
+USE_X_FORWARDED_PORT = True
+
+# 3. 识别 Nginx 转发的 HTTP/HTTPS 协议
+# 你的 Nginx 用 http 就填 http，用 https 就改 https
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'http')
+
+# 4. 防 CSRF 报错（如果用域名/外网访问必加）
+# 填写你的访问地址：本机IP、域名、localhost
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1",
+    "http://localhost",
+]
 
 
 # Application definition
@@ -77,11 +93,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': "db_notebook",
-        'USER': 'root',
-        'PASSWORD': 'root',
+'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
