@@ -22,5 +22,5 @@ urlpatterns = [
     path("urls/",include("urls.urls")),
     path("",include("main.urls")),
     path("notebook/",include("notebook.urls")),
-
+    path("users/",include("users.urls")),
 ]
