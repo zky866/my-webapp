@@ -3,12 +3,7 @@
   {%if form.errors %}
     <P>输入错误</P>
   {% endif%}
-
-<<<<<<< HEAD
-  <form method="post" action="{% url "users:login" %}>
-=======
   <form method="post" action="{% url "users:login" %}">
->>>>>>> e73b046b622ff3505d180a31ea29627396c51246
     {% csrf_token %}
     {{form.as_p}}
     <button name="submit">登录</button>
